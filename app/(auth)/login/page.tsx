@@ -20,7 +20,7 @@ export default function LoginPage() {
   const { setSession } = useSession()
   const router = useRouter()
   const search = useSearchParams()
-  const next = search.get("next") || "/dashboard"
+  const next = search.get("next") || "/gallery-wall"
   const { toast } = useToast()
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -37,7 +37,7 @@ export default function LoginPage() {
         refreshToken: data.data.refreshToken,
       })
       toast({ title: "Welcome back!", description: "Signed in successfully." })
-      router.push(next)
+      router.push("/gallery-wall")
     } catch (err: any) {
       toast({ title: "Login error", description: err.message, variant: "destructive" })
     } finally {

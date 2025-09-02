@@ -119,7 +119,7 @@ export default function GalleryWallPage() {
               <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
                 <div>
                   <DialogHeader className="mb-4">
-                    <DialogTitle className="text-2xl font-bold">{selectedImage.fileName}</DialogTitle>
+                    {/* <DialogTitle className="text-2xl font-bold">{selectedImage.fileName}</DialogTitle> */}
                     <DialogDescription className="text-gray-600">
                       Full details of the image.
                     </DialogDescription>

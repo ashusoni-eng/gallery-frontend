@@ -40,10 +40,10 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8 p-8 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl shadow-2xl">
       <div className="flex items-center justify-between">
-        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Dashboard Overview</h2>
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Album</h2>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {/* <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border border-purple-200 bg-white text-card-foreground shadow-xl transform transition duration-500 hover:scale-105 hover:shadow-2xl">
           <div className="p-7 flex flex-row items-center justify-between space-y-0 pb-2">
             <h3 className="tracking-tight text-xl font-semibold text-purple-800">Total Categories</h3>
@@ -93,7 +93,7 @@ export default function DashboardPage() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-xl">
         <table className="w-full text-lg">

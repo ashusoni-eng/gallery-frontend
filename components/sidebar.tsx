@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/sidebar"
 
 const items = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/gallery-wall", label: "Gallery Wall", icon: Images },
+  { href: "/dashboard", label: "Album", icon: LayoutDashboard },
   { href: "/category", label: "Category", icon: Folder },
   { href: "/manage-images", label: "Manage Images", icon: Images },
-  { href: "/gallery-wall", label: "Gallery Wall", icon: Images },
   { href: "/groups", label: "Groups", icon: Folder },
 ]
 
@@ -43,7 +43,7 @@ export function Sidebar() {
                   <SidebarMenuButton asChild isActive={!!active}>
                     <Link
                       href={it.href}
-                      className={cn("flex items-center gap-4 px-6 py-3 rounded-lg transition-all duration-200", active ? "bg-white bg-opacity-20 text-white shadow-md" : "text-blue-100 hover:bg-white hover:bg-opacity-10 hover:text-white")}
+                      className={cn("flex items-center gap-4 px-6 py-3 rounded-lg transition-all duration-200", active ? "bg-white bg-opacity-20 text-white shadow-md" : "text-blue-100 hover:bg-white hover:bg-opacity-10 hover:text-blue-900")}
                       aria-current={active ? "page" : undefined}
                     >
                       <Icon className="size-6" aria-hidden="true" />
