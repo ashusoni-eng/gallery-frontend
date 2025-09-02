@@ -6,12 +6,14 @@ import { useToast } from "@/hooks/use-toast"
 import { useSession } from "@/hooks/use-auth"
 import { api } from "@/lib/api" // Import the centralized API client
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 type Category = { id: string; categoryName: string; description: string; creatorName: string } // Changed name to categoryName to match backend
 
 export default function CategoryPage() {
   const { toast } = useToast()
   const { session } = useSession()
+  const isMobile = useIsMobile()
   console.log("CategoryPage: session", session)
 
   const [categories, setCategories] = useState<Category[]>([]) // Manage categories state
@@ -89,22 +91,22 @@ export default function CategoryPage() {
 
   return (
     <div className="space-y-8 p-8 bg-gradient-to-br from-green-50 to-teal-100 rounded-xl shadow-2xl">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Categories</h2>
-        <form id="new-cat-form" action={async (fd) => createCat(fd)} className="flex items-center gap-4">
+        <form id="new-cat-form" action={async (fd) => createCat(fd)} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <input
             name="name"
             placeholder="New category name"
-            className="h-12 w-64 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
+            className="h-12 w-full sm:w-64 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
           />
           <input
             name="description"
             placeholder="Category description"
-            className="h-12 w-64 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
+            className="h-12 w-full sm:w-64 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
           />
           <button
             type="submit"
-            className="inline-flex h-12 items-center rounded-lg bg-blue-600 px-6 text-lg font-medium text-white shadow-md hover:bg-blue-700 transition duration-200 transform hover:-translate-y-0.5"
+            className="inline-flex h-12 items-center rounded-lg bg-blue-600 px-6 text-lg font-medium text-white shadow-md hover:bg-blue-700 transition duration-200 transform hover:-translate-y-0.5 w-full sm:w-auto"
           >
             Add Category
           </button>

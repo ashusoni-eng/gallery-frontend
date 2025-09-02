@@ -3,13 +3,14 @@ import Protected from "@/components/auth/protected"
 import { Sidebar as AppSidebar } from "@/components/sidebar"
 import { Sidebar as UISidebar, SidebarInset, SidebarProvider, SidebarRail } from "@/components/ui/sidebar"
 import { Topbar } from "@/components/topbar"
+import { MobileBottomNav } from "@/components/mobile-bottom-nav"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <Protected>
       <SidebarProvider>
         <div className="flex min-h-dvh w-full">
-          <UISidebar collapsible="icon" className="bg-background">
+          <UISidebar collapsible="icon" className="bg-background hidden md:block">
             <AppSidebar />
             <SidebarRail />
           </UISidebar>
@@ -19,6 +20,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <main className="p-6 bg-gradient-to-br from-purple-50 to-blue-100 min-h-[calc(100vh-80px)]">{children}</main>
           </SidebarInset>
         </div>
+        <MobileBottomNav />
       </SidebarProvider>
     </Protected>
   )

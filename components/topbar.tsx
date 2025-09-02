@@ -9,7 +9,7 @@ export function Topbar() {
   return (
     <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-blue-200 bg-white/90 px-8 shadow-lg backdrop-blur-md supports-[backdrop-filter]:bg-white/80">
       <div className="flex items-center gap-6">
-        <SidebarTrigger aria-label="Toggle sidebar" />
+        <SidebarTrigger aria-label="Toggle sidebar" className="md:hidden"/>
         <h1 className="text-2xl font-bold text-gray-800">Gallery</h1>
       </div>
       <div className="flex items-center gap-5">
