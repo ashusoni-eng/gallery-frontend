@@ -87,6 +87,10 @@ export default function ManageImagesPage() {
     e.target.value = '';
   }
 
+  function handleRemoveImage(index: number) {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  }
+
   const previews = useMemo(() => {
     return files.map((f) => ({ name: f.name, url: URL.createObjectURL(f) }))
   }, [files])
@@ -186,13 +190,33 @@ export default function ManageImagesPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {previews.map((p) => (
-              <div key={p.url} className="overflow-hidden rounded-md border border-border bg-card shadow-sm">
-                <div className="relative aspect-[4/3] w-full bg-muted">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+            {previews.map((p, index) => (
+              <div key={p.url} className="relative overflow-hidden rounded-md border border-border bg-card shadow-sm">
+                <div className="relative aspect-square w-32 h-32 bg-muted">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.url || "/placeholder.svg"} alt={p.name} className="h-full w-full object-cover" />
+                  <img src={p.url || "/placeholder.svg"} alt={p.name} className="w-full h-full object-cover" />
                 </div>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="absolute right-1 top-1 rounded-full bg-red-500 p-1 text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
                 <div className="p-3 text-base font-medium text-foreground">
                   {p.name}
                 </div>
