@@ -18,6 +18,7 @@ const items = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/category", label: "Category", icon: Folder },
   { href: "/manage-images", label: "Manage Images", icon: Images },
+  { href: "/gallery-wall", label: "Gallery Wall", icon: Images },
   { href: "/groups", label: "Groups", icon: Folder },
 ]
 
