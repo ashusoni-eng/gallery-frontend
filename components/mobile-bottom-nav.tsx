@@ -11,6 +11,7 @@ const navItems = [
   { href: "/dashboard", label: "Album", icon: LayoutDashboard },
   { href: "/category", label: "Category", icon: Folder },
   { href: "/groups", label: "Groups", icon: Folder },
+  { href: "/manage-images", label: "Gallery", icon: Images },
 ]
 
 export function MobileBottomNav() {

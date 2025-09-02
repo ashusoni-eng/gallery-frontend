@@ -125,30 +125,30 @@ export default function ManageImagesPage() {
   }
 
   return (
-    <div className="space-y-8 p-8 bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl shadow-2xl">
-      <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Manage Images</h2>
+    <div className="space-y-8 p-4 bg-background">
+      <h2 className="text-4xl font-extrabold tracking-tight text-foreground">Manage Images</h2>
 
-      <div className="rounded-xl border border-gray-200 bg-white shadow-xl p-8 space-y-6">
-        <div className="border-b pb-6">
-          <div className="text-2xl font-semibold text-gray-800">Upload New Images</div>
-          <div className="text-base text-muted-foreground">Select images and upload to a category.</div>
+      <div className="rounded-md border border-border bg-card shadow-sm p-4 space-y-4">
+        <div className="border-b border-border pb-4">
+          <div className="text-xl font-semibold text-foreground">Upload New Images</div>
+          <div className="text-sm text-muted-foreground">Select images and upload to a category.</div>
         </div>
-        <div className="space-y-6">
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4">
             <button
               onClick={openPicker}
-              className="inline-flex h-12 items-center rounded-lg bg-blue-600 px-6 text-lg font-medium text-white shadow-md hover:bg-blue-700 transition duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-base font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition duration-200 w-full sm:w-auto"
             >
               Select Images
             </button>
             <input ref={fileRef} type="file" accept="image/*" multiple className="hidden" onChange={onFilesChange} />
-            <div className="flex items-center gap-4">
-              <label className="text-lg font-medium text-gray-700">Category:</label>
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+              <label className="text-base font-medium text-foreground">Category:</label>
               {loadingCategories ? (
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="h-12 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
+                  className="h-10 w-full sm:w-auto rounded-md border border-border bg-card px-3 text-base outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-200"
                   disabled
                 >
                   <option>Loading categories...</option>
@@ -157,7 +157,7 @@ export default function ManageImagesPage() {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="h-12 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
+                  className="h-10 w-full sm:w-auto rounded-md border border-border bg-card px-3 text-base outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-200"
                   disabled
                 >
                   <option>No categories available</option>
@@ -166,7 +166,7 @@ export default function ManageImagesPage() {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="h-12 rounded-lg border border-gray-300 bg-white px-4 text-lg outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500/50 transition duration-200"
+                  className="h-10 w-full sm:w-auto rounded-md border border-border bg-card px-3 text-base outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-primary/50 transition duration-200"
                 >
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -176,30 +176,30 @@ export default function ManageImagesPage() {
                 </select>
               )}
             </div>
-            <div className="ml-auto">
+            <div className="w-full sm:w-auto sm:ml-auto">
               <button
                 onClick={uploadAll}
-                className="inline-flex h-12 items-center rounded-lg bg-green-600 px-6 text-lg font-medium text-white shadow-md hover:bg-green-700 transition duration-200 transform hover:-translate-y-0.5"
+                className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-base font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition duration-200 w-full sm:w-auto"
               >
                 Upload Images
               </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {previews.map((p) => (
-              <div key={p.url} className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
-                <div className="relative aspect-[4/3] w-full bg-gray-100">
+              <div key={p.url} className="overflow-hidden rounded-md border border-border bg-card shadow-sm">
+                <div className="relative aspect-[4/3] w-full bg-muted">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.url || "/placeholder.svg"} alt={p.name} className="h-full w-full object-cover" />
                 </div>
-                <div className="p-4 text-base font-medium text-gray-800">
+                <div className="p-3 text-base font-medium text-foreground">
                   {p.name}
                 </div>
               </div>
             ))}
             {!previews.length && (
-              <div className="col-span-full rounded-lg border border-gray-200 bg-white p-6 text-center text-lg text-muted-foreground shadow-md">
+              <div className="col-span-full rounded-md border border-border bg-card p-4 text-center text-base text-muted-foreground shadow-sm">
                 No images selected yet.
               </div>
             )}
@@ -207,28 +207,28 @@ export default function ManageImagesPage() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white shadow-xl p-8 space-y-6">
-        <div className="border-b pb-6">
-          <div className="text-2xl font-semibold text-gray-800">Image Gallery</div>
-          <div className="text-base text-muted-foreground">All uploaded images.</div>
+      <div className="rounded-md border border-border bg-card shadow-sm p-4 space-y-4">
+        <div className="border-b border-border pb-4">
+          <div className="text-xl font-semibold text-foreground">Image Gallery</div>
+          <div className="text-sm text-muted-foreground">All uploaded images.</div>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-4">
           {loadingGallery ? (
-            <div className="text-center text-lg text-muted-foreground">
+            <div className="text-center text-base text-muted-foreground">
               Loading gallery...
             </div>
           ) : gallery.length === 0 ? (
-            <div className="text-center text-lg text-muted-foreground">
+            <div className="text-center text-base text-muted-foreground">
               No images in the gallery.
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {gallery.map((image: any) => (
-                <div key={image.id} className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
-                  <div className="relative aspect-[4/3] w-full bg-gray-100">
+                <div key={image.id} className="overflow-hidden rounded-md border border-border bg-card shadow-sm">
+                  <div className="relative aspect-[4/3] w-full bg-muted">
                     <img src={image.url} alt={image.fileName} className="h-full w-full object-cover" />
                   </div>
-                  <div className="p-4 text-base font-medium text-gray-800">
+                  <div className="p-3 text-base font-medium text-foreground">
                     {image.fileName}
                   </div>
                 </div>
