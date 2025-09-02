@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -11,13 +10,13 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { useSession } from "@/hooks/use-auth"
 import { useToast } from "@/hooks/use-toast"
-import { api } from "@/lib/api" // Import the centralized API client
+import { api } from "@/lib/api"
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [fullname, setFullname] = useState("")
-  const [password, setPassword] = useState("") // Add password state
+  const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const { setSession } = useSession()
   const router = useRouter()
@@ -27,14 +26,13 @@ export default function RegisterPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      // Use the centralized API client
-      const data = await api.post("/auth/register", {fullName:fullname, email, username, password }) // Changed endpoint and added password
+      const data = await api.post("/auth/register", { fullName: fullname, email, username, password })
       setSession({
-        email: data.user.email,
-        username: data.user.fullName, // Use fullName for username
-        userId: data.user.id, // Add userId
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
+        email: data.data.user.email,
+        username: data.data.user.fullName,
+        userId: data.data.user.id,
+        accessToken: data.data.accessToken,
+        refreshToken: data.data.refreshToken,
       })
       toast({ title: "Welcome!", description: "Account created." })
       router.push("/dashboard")
@@ -46,37 +44,38 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-sm items-center justify-center p-4">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle className="text-balance">Create account</CardTitle>
-          <CardDescription>Register to continue</CardDescription>
+    <div className="relative flex min-h-dvh items-center justify-center p-8 bg-gradient-to-br from-blue-100 to-purple-200">
+      <Card className="w-full max-w-md p-6 shadow-2xl rounded-xl border-2 border-blue-300 bg-white bg-opacity-90 transform transition duration-500 hover:scale-105">
+        <CardHeader className="text-center mb-6">
+          <CardTitle className="text-4xl font-extrabold text-gray-900 mb-2">Create an Account</CardTitle>
+          <CardDescription className="text-lg text-gray-600">Join us today!</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div className="grid gap-2">
-              <Label htmlFor="username">Name</Label>
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div className="grid gap-3">
+              <Label htmlFor="fullname" className="text-lg font-medium text-gray-700">Full Name</Label>
               <Input
                 id="fullname"
                 required
-                placeholder="Name"
+                placeholder="John Doe"
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
+                className="h-12 text-lg rounded-lg border-gray-400 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
               />
             </div>
-
-            <div className="grid gap-2">
-              <Label htmlFor="username">Username</Label>
+            <div className="grid gap-3">
+              <Label htmlFor="username" className="text-lg font-medium text-gray-700">Username</Label>
               <Input
                 id="username"
                 required
-                placeholder="username"
+                placeholder="johndoe"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className="h-12 text-lg rounded-lg border-gray-400 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="grid gap-3">
+              <Label htmlFor="email" className="text-lg font-medium text-gray-700">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -84,10 +83,11 @@ export default function RegisterPage() {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="h-12 text-lg rounded-lg border-gray-400 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
               />
             </div>
-            <div className="grid gap-2"> {/* Add password input */}
-              <Label htmlFor="password">Password</Label>
+            <div className="grid gap-3">
+              <Label htmlFor="password" className="text-lg font-medium text-gray-700">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -95,15 +95,16 @@ export default function RegisterPage() {
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="h-12 text-lg rounded-lg border-gray-400 focus:border-blue-500 focus:ring-blue-500 shadow-sm"
               />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating..." : "Register"}
+            <Button type="submit" className="w-full h-12 text-xl font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1" disabled={loading}>
+              {loading ? "Creating Account..." : "Register"}
             </Button>
-            <div className="text-center text-sm text-muted-foreground">
-              Have an account?{" "}
-              <Link className="underline" href="/login">
-                Sign in
+            <div className="text-center text-base text-gray-600">
+              Already have an account?{" "}
+              <Link className="underline text-blue-600 hover:text-blue-800 font-semibold" href="/login">
+                Sign In
               </Link>
             </div>
           </form>

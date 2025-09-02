@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           <SidebarInset>
             <Topbar />
-            <main className="p-4">{children}</main>
+            <main className="p-6 bg-gradient-to-br from-purple-50 to-blue-100 min-h-[calc(100vh-80px)]">{children}</main>
           </SidebarInset>
         </div>
       </SidebarProvider>
